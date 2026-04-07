@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="pt-BR">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Setor</title>
+</head>
+<body>
+    <h1>Relatório de Setores</h1>
+    <table border="1">
+        <thead>
+    <tr>
+        <th>ID</th>
+        <th>SETOR</th>
+        <th>N° CORREDOR</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse($setores as $setor)
+        <tr>
+             <td>{{ $setor->id }}</td>
+             <td>{{ $setor->nCorredor }}</td>
+             <td>{{ $setor->nome }}</td>
+                </tr>
+            @empty
+            <tr>
+                    <td colspan="5">Nenhum Produto encontrado</td> 
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
+    
+</body>
+</html>
