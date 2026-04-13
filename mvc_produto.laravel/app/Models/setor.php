@@ -10,7 +10,7 @@ class Setor extends Model{
 
     protected $fillable = [
         'nome',
-        'nCorredor'
+        'NumCorredor'
     ];
 
     public function produtos(){

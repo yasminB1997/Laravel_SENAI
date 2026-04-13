@@ -83,13 +83,13 @@ class ProdutoController extends Controller{
              'tamanho' => $request->tamanho,
         ]);
 
-        return redirect()->back()->with('success','Produto atualizado com sucesso!');
+        return redirect()->back()->with('success','Produto atualizado com exito!');
     }
 
     public function deletar($id){
         $produto = Produto::findOrFail($id);
         $produto->delete();
 
-        return redirect()->route('produto.listar')->with('success','Produto excluído com sucesso!');
+        return redirect()->route('produto.listar')->with('success','Produto excluído com exito!');
     }
 }

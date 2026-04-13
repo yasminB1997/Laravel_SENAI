@@ -24,6 +24,6 @@ class SetorController extends Controller{
             'nCorredor' => $request->nCorredor
         ]);
 
-     return redirect()->back()->with('success','Setor cadastrado com sucesso!');
+     return redirect()->back()->with('success','Setor cadastrado com exito!');
     }
 }
