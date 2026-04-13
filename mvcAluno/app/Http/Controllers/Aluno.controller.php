@@ -2,27 +2,40 @@
 // estou no AlunoController.php
 namespace App\Http\Controllers;
 use App\Models\Aluno;
+use App\Models\Turma;
 
 use Illuminate\Http\Request;
 
 class AlunoController extends Controller
 {
     public function listar(){
-        $query = Aluno::query();
-        $alunos = $query->get(); // select * from alunos
+        // $query = Aluno::query();
+        // $alunos = $query->get(); // select * from alunos
+
+        $alunos = Aluno::with('turma')->get();
+        // SELECT * FROM alunos join turmas on turma_id = turmas.id;
+        // @dd($alunos->toArray());
         return view('listar', compact('alunos'));
+    }
+
+    public function cadastro(){
+        $turmas = Turma::get();
+        return view('cadastro', compact('turmas'));
     }
 
     public function add(Request $request){
 
         $request->validate([
             'nome' => 'required|string|max:255',
-            'email' => 'required|string|max:255|unique:alunos,email'
+            'email' => 'required|string|max:255|unique:alunos,email',
+            'turma_id' => 'nullable|exists:turmas,id' 
+            // para poder ser nulo ou existir na tabela turmas
         ]);
 
         Aluno::create([
             'nome' => $request->nome,
-            'email' => $request->email
+            'email' => $request->email,
+            'turma_id' => $request->turma_id
         ]);
 
         return redirect()->back()->with('success','Aluno Cadastrado com sucesso!');
@@ -48,6 +61,14 @@ class AlunoController extends Controller
 
         $aluno->save(); // salvando no banco de dados(fazendo update)
         return redirect()->back()->with('success','Aluno atualizado com suceso');
+    }
+
+    public function deletar($id){
+        $aluno = Aluno::findOrFail($id); // buscar o aluno para depois deletar
+        $aluno->delete(); // faz o delete no banco de dados
+
+        return redirect()->route('aluno.listar')
+            ->with('success','Aluno excluído com sucesso!');
     }
 
 }

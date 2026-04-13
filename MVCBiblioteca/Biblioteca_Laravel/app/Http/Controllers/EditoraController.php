@@ -2,31 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Setor;
+use App\Models\Editora;
 use Illuminate\Http\Request;
 
 class EditoraController extends Controller{
+
     public function listarEditora(){
-        $editoras= Editora::all();
-        return view ('ListarEditora', compact('editoras'));
+        $editoras = Editora::all(); 
+        return view('listarEditora', compact('editoras'));
     }
 
     public function add(Request $request){
+
         $request->validate([
-            'nome'=> 'required|string|max:255',
-            'cnpj'=> 'required|numeric|max:255',
-            'país'=> 'required|numeric|max:255',
-            'cidade'=> 'required|numeric|max:255',
+            'nomeEd' => 'required|string|max:255',
+            'cnpj' => 'required|numeric|',
+            'cidade' => 'required|string|max:255',
+            'pais' => 'required|string|max:255',
+            
         ]);
 
         Editora::create([
-            'nome'=> $request->nome,
-            'cnpj'=> $Request->cnpj,
-            'país'=>$request->pais, 
-            'cidade'=> $required->cidade,
+            'nomeEd' => $request->nomeEd,
+            'cnpj' => $request->cnpj,
+            'cidade' => $request->cidade,
+            'pais' => $request->pais,
+            
+            
         ]);
 
-        return redirect()->back()->with('sucess', 'Editora cadastrada com exito!');
+        return redirect()->back()->with('success','Editora cadastrada com exito :)!');
     }
 }
-
