@@ -22,6 +22,21 @@
 
         <input type="text" name="email" 
             value="{{ old('email', $aluno->email)}}" required>
+
+        <input type="text" name="endereco" 
+            value="{{ old('nome', $aluno->nome)}}" required>
+
+        <input type="text" name="telefone" 
+            value="{{ old('email', $aluno->email)}}" required>
+            
+        <input type="text" name="idade" 
+            value="{{ old('nome', $aluno->nome)}}" required>
+
+        <input type="text" name="data_nascimento" 
+            value="{{ old('email', $aluno->data_nasciment)}}" required>
+
+
+
         <button type="submit">Atualizar</button>
     </form>
 

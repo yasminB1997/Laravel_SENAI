@@ -35,6 +35,30 @@
             @endforeach
         </select>
 
+        
+        <br><br>
+        <label for="descricao">Endereco: </label>
+        <input type="text" name="endereco" id="endereco" placeholder="endereco..."
+            required value="{{ old('endereco')}}"
+        >
+
+        <br><br>
+        <label for="tamanho">telefone: </label>
+        <input type="text" name="telefone" id="telefone" placeholder="Telefone..."
+            required value="{{ old('telefone')}}"
+        >
+
+        <br><br>
+        <label for="peso">idade: </label>
+        <input type="number" name="idade" id="idade" placeholder="idade..."
+            required value="{{ old('idade')}}"
+
+             <br><br>
+        <label for="peso">data nascimento: </label>
+        <input type="date" name="data_nascimento" id="data_nascimento" placeholder="data de nascimento..."
+            required value="{{ old('idade')}}"
+
+
 
         <input type="submit" value="Cadastrar">
     </form>

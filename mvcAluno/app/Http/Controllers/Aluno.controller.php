@@ -28,8 +28,12 @@ class AlunoController extends Controller
         $request->validate([
             'nome' => 'required|string|max:255',
             'email' => 'required|string|max:255|unique:alunos,email',
-            'turma_id' => 'nullable|exists:turmas,id' 
-            // para poder ser nulo ou existir na tabela turmas
+            'turma_id' => 'nullable|exists:turmas,id' ,
+             'endereco' => 'string|max:255',
+            'telefone' =>'required|string|max:255',
+            'idade' => 'number|max:255',
+            'data_nascimento'=>'required|number|max:255',
+        
         ]);
 
         Aluno::create([
@@ -38,7 +42,19 @@ class AlunoController extends Controller
             'turma_id' => $request->turma_id
         ]);
 
-        return redirect()->back()->with('success','Aluno Cadastrado com sucesso!');
+    
+          DetalheProdutos::create([
+            'endereco' => $request ->enderco,
+            'telefone' => $request->telefone,
+            'idade' => $request->idade,
+            'data_nascimento'=>$request ->data_nascimento,
+
+                    ]);
+
+
+            return redirect()->back()->with('success','Aluno Cadastrado com sucesso!');
+
+
 
     }
 
