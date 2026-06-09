@@ -4,18 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DetalheProduto extends Model{
-
-    protected $table = 'detalhesProduto';
+class DetalheProdutos extends Model
+{
+    protected $table = 'DetalheProdutos';
 
     protected $fillable = [
-        'peso',
         'descricao',
-        'tamanho'
-        
+        'tamanho',
+        'peso',
+        'produto_id'
     ];
 
- public function produtos(){
-        return $this->hasMany(Produto::class);
+    public function produto(){
+        return $this->belongsTo(Produto::class);
     }
 }
